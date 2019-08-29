@@ -32,5 +32,5 @@ class Deque:
             reverse_deque.append(deque[i])
         reverse_deque.reverse()
         if reverse_deque == deque:
-            return 'Polindrom'
+            return 'polindrom'
         return 'no polindrom'
