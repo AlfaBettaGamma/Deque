@@ -1,101 +1,94 @@
-class Stack:
+class Deque:
     def __init__(self):
-        self.stack = []
+        self.deque = []
+        # инициализация внутреннего хранилища
+
+    def addFront(self, item):
+        self.deque.insert(0,item)
+        # добавление в голову
+
+    def addTail(self, item):
+        self.deque.insert(self.size(),item)
+        # добавление в хвост
+
+    def removeFront(self):
+        # удаление из головы
+        if self.size() < 1:
+            return None # если стек пустой
+        return self.deque.pop(0)
+
+    def removeTail(self):
+        # удаление из хвоста
+        if self.size() < 1:
+            return None # если стек пустой
+        return self.deque.pop(self.size()-1)
 
     def size(self):
-        return len(self.stack)
+        return len(self.deque) # размер очереди
 
-    def pop(self):
-        # ваш код
-        if self.size() < 1:
-            return None # если стек пустой
-        return self.stack.pop(0)
-            
-    def push(self, value):
-        self.stack.insert(0,value)
-        # ваш код
+    def polindrom(self,deque):
+        reverse_deque = []
+        for i in range(len(deque)):
+            reverse_deque.append(deque[i])
+        reverse_deque.reverse()
+        if reverse_deque == deque:
+            return 'Polindrom'
+        return 'no polindrom'
 
-    def FILO(self):
-        # ваш код
-        if self.size() < 1:
-            return None # если стек пустой
-        return stack.pop(stack.size()-1)
-            
-    def peek(self):
-        # ваш код
-        if self.size() < 1:
-            return None # если стек пустой
-        return self.stack[0]
+class Test():
 
-    def balanced(self, old_stack):
-        new_stack = Stack()
-        for i in range(len(old_stack)):
-            if old_stack[i] == '(':
-                new_stack.push('(')
-            elif old_stack[i] == ')' and new_stack.peek() == '(':
-                new_stack.pop()
-        if new_stack.size() == 0:
-            return 'balanced'
-        else:
-            return 'no balanced'
-
-    def calculating(self, s0):
-        s = s0.split()
-        s2 = Stack()
-        s1 = Stack()
-        for i in range(len(s)):
-            s1.push(s[i])
-            if s[i] == "+":
-                while s2.size() > 1:
-                    s2.push(s2.pop() + s2.pop())
-                s1.pop()
-            elif s[i] == "*":
-                while s2.size() > 1:
-                    s2.push(s2.pop() * s2.pop())
-                s1.pop()
-            elif s[i] == "=":
-                return s2.pop()
-            else:
-                s2.push(int(s1.pop()))
+    def test_add(self):
+        deq = Deque()
+        test_deque = Deque()
+        for i in range(10):
+            deq.addTail(i)
+            test_deque.addTail(i)
+        print(deq.size())
+        print(deq.deque)
+        deq.removeFront()
+        if deq.deque[0] == test_deque.deque[0]:
+            print('no delete')
+        print('delete in front')
+        print(deq.size())
+        print(deq.deque)
+        deq.removeTail()
+        if deq.deque[deq.size()-1] == test_deque.deque[test_deque.size()-1]:
+            print('no delete')
+        print('delete in tail')
+        print(deq.size())
+        print(deq.deque)
 
 
-
-
-stack = Stack()
-for i in range(1000):
-    stack.push(i)
-for i  in range(100):
-    stack.pop()
-#print(stack.balanced('((()))'))
-#print(stack.balanced('(()((())()))'))
-
-#print(stack.calculating('8 2 + 5 * 9 + ='))
+test = Test()
+test.test_add()
+#deq = Deque()
+#deq.addFront("f1")
+#deq.addTail("t1")
+#deq.addFront("f2")
+#deq.addTail("t2")
+#print(deq.deque)
+#print(deq.polindrom(deq.deque))
+#deq1 = Deque()
+#deq1.addFront('н')
+#deq1.addFront('а')
+#deq1.addFront('в')
+#deq1.addFront('л')
+#deq1.addFront('о')
+#deq1.addFront('б')
+#deq1.addFront(',')
+#deq1.addFront('б')
+#deq1.addFront('о')
+#deq1.addFront('л')
+#deq1.addFront('в')
+#deq1.addFront('а')
+#deq1.addFront('н')
+#print(deq1.deque)
+#print(deq1.polindrom(deq1.deque))
 
 
 
 
-#stack.push(1)
-#stack.push("2")
-#stack.push(3.14)
-#print('len - ',stack.size())
-#stack.print_stack()
-#print(stack.FILO())
-#stack.print_stack()
-#print(stack.FILO())
-#stack.print_stack()
-#print(stack.FILO())
-#stack.print_stack()
+#while deq.size() > 0:
+    #print(deq.removeFront())
+    #print(deq.removeTail())
 
-#stack.print_stack()
-#print(stack.pop())
-#stack.print_stack()
-#print(stack.pop())
-#stack.print_stack()
-#print(stack.pop())
-#stack.print_stack()
-#print(stack.pop())
-#print(stack.pop())
-#print(stack.pop())
-#print(stack.pop())
-#print(stack.pop())
-#print(stack.pop())
